@@ -89,6 +89,12 @@ const UserService = {
         })
     })
   },
+  getSteamId(db, id){
+    return db('user')
+      .select('steamId')
+      .where({id})
+      .returning('steamId')
+  }
 }
 
 module.exports = UserService

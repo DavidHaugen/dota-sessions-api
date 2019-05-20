@@ -1,11 +1,17 @@
 const express = require('express')
 const path = require('path')
 const UserService = require('./user-service')
+const { requireAuth } = require('../middleware/jwt-auth')
 
 const userRouter = express.Router()
 const jsonBodyParser = express.json()
 
 userRouter
+  .get('/', requireAuth, (req,res,next) => {
+    UserService.getSteamId(req.app.get('db'), req.user.id)
+      .then(id => res.json(id))
+      .catch(next);
+  })
   .post('/', jsonBodyParser, async (req, res, next) => {
     const { password, username, name } = req.body
 

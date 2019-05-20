@@ -9,6 +9,17 @@ const jsonBodyParser = express.json();
 
 // proxyRouter
 //   .use(requireAuth);
+proxyRouter 
+  .route('/heroes')
+  .get((req, res, next) => {
+    return fetch('https://api.opendota.com/api/heroes')
+      .then(res => res.json())
+      .then(res => res.map(hero => {return {id: hero.id, name: hero.localized_name, legs: hero.legs};}))
+      .then(results => {
+        res.status(201);
+        res.json(results);
+      });
+  });
 
 proxyRouter
   .route('/:steamId')
@@ -21,5 +32,6 @@ proxyRouter
       })
       .catch(next);
   });
+
 
 module.exports = proxyRouter;
