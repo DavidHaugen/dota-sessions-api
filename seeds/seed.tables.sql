@@ -22,11 +22,20 @@ VALUES
   (
     1,
     1,
-    4772862856,
+    4790226187,
     'Good use of ults to save teammates',
     'Better positioning in team fights would help me survive more fights',
     'Should I have built a blink dagger this game?',
     'fun game!'
+  ),
+  (
+    2,
+    1,
+    4790167597,
+    'Good itemization',
+    'Could have focused more on farming pattern efficiency',
+    'Should I have built BKB second item?',
+    'Tough one!'
   );
 
 SELECT setval('user_id_seq', (SELECT MAX(id) from "user"));
