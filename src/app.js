@@ -8,6 +8,7 @@ const authRouter = require('./auth/auth-router');
 const languageRouter = require('./language/language-router');
 const userRouter = require('./user/user-router');
 const proxyRouter = require('./proxy/proxy-router');
+const matchRouter = require('./match/match-router');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/language', languageRouter);
 app.use('/api/user', userRouter);
 app.use('/api/proxy', proxyRouter);
+app.use('/api/match', matchRouter);
 
 app.use(errorHandler);
 
