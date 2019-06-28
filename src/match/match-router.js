@@ -7,6 +7,16 @@ const jsonBodyParser = express.json();
 
 matchRouter
   .use(requireAuth)
+  .post('/', (req, res, next) => {
+    return matchService.postMatchInfo(
+      req.app.get('db'),
+      req.user.id,
+      req.body
+    ).then(results => {
+      res.status(201);
+      res.json(results);
+    });
+  })
   .get('/', (req, res, next) => {
     return matchService.getRecentMatchInfo(
       req.app.get('db'),
