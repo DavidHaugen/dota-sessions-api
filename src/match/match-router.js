@@ -7,7 +7,8 @@ const jsonBodyParser = express.json();
 
 matchRouter
   .use(requireAuth)
-  .post('/', (req, res, next) => {
+  .post('/', jsonBodyParser, (req, res, next) => {
+    console.log('>>>>>', req.user);
     return matchService.postMatchInfo(
       req.app.get('db'),
       req.user.id,
