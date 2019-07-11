@@ -11,6 +11,8 @@ const matchService = {
       .select('*')
       .where('matches.user_id', user_id)
       .insert({
+        match_id: body.matchId,
+        user_id: user_id,
         happy: body.happy,
         work: body.work,
         question: body.question,
