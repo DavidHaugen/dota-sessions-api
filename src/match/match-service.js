@@ -21,10 +21,14 @@ const matchService = {
       .returning('*');
   },
   updateMatchInfo(db, user_id, body){
+    console.log(body);
     return db
       .from('matches')
       .select('*')
-      .where('matches.user_id', user_id)
+      .where(
+        {'matches.user_id': user_id,
+          'matches.match_id': body.match_id}
+      )
       .update({
         happy: body.happy,
         work: body.work,
